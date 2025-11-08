@@ -18,7 +18,7 @@
             margin-bottom: 30px;
         }
 
-        a button {
+        a button, .edit-btn {
             background-color: #0984e3;
             color: white;
             border: none;
@@ -27,10 +27,9 @@
             border-radius: 8px;
             cursor: pointer;
             transition: 0.2s ease-in-out;
-            margin-bottom: 20px;
         }
 
-        a button:hover {
+        a button:hover, .edit-btn:hover {
             background-color: #0872c0;
             transform: scale(1.05);
         }
@@ -47,7 +46,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 600px; /* biar kolom tetap rapi di layar kecil */
+            min-width: 700px; /* biar kolom tetap rapi di layar kecil */
         }
 
         th, td {
@@ -66,7 +65,11 @@
             background-color: #f1f2f6;
         }
 
-        /* Responsif: padding dan ukuran teks menyesuaikan */
+        .action-cell {
+            display: flex;
+            gap: 8px;
+        }
+
         @media (max-width: 600px) {
             body {
                 padding: 20px;
@@ -85,6 +88,10 @@
                 padding: 10px 12px;
                 font-size: 14px;
             }
+
+            .action-cell {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -94,6 +101,8 @@
         <button type="submit">Add Books</button>
     </a>
 
+    <br>
+    <br>
     <div class="table-container">
         <table>
             <thead>
@@ -102,15 +111,24 @@
                     <th>Penulis</th>
                     <th>Total Halaman</th>
                     <th>Genre</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($books as $book): ?>
                     <tr>
-                        <td><?= $book['nama'] ?></td>
-                        <td><?= $book['penulis'] ?></td>
-                        <td><?= $book['thalaman'] ?></td>
-                        <td><?= $book['genre'] ?></td>
+                        <td><?= htmlspecialchars($book['nama']) ?></td>
+                        <td><?= htmlspecialchars($book['penulis']) ?></td>
+                        <td><?= htmlspecialchars($book['thalaman']) ?></td>
+                        <td><?= htmlspecialchars($book['genre']) ?></td>
+                        <td class="action-cell">
+                            <a href="index.php?action=edit&id=<?= $book['id'] ?>">
+                                <button class="edit-btn">Edit</button>
+                            </a>
+                            <a href="index.php?action=delete&id=<?= $book['id'] ?>" onclick="return confirm('Yakin mau hapus buku ini?')">
+                                <button class="edit-btn" style="background-color: #d63031;">Delete</button>
+                            </a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
