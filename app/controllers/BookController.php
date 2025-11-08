@@ -29,5 +29,10 @@ class BookController {
         header("Location: index.php");
         exit;
     }
+    public function delete($id){
+        $this->model->delete($id);
+        header("Location: index.php");
+        exit;
+    }
 }
 ?>

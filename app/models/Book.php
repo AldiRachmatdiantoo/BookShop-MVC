@@ -40,5 +40,10 @@ class Book {
             'id' => $id
         ]);
     }
+    public function delete($id){
+        $sql = "DELETE FROM books WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id' => $id]);
+    }
 }
 ?>
