@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private $host;
-    private $dbname;
-    private $username;
-    private $password;
+    private $host = "localhost";
+    private $dbname = "db_tokobuku";
+    private $username = "root";
+    private $password = "";
 
     public function getConnection(){
         try {
