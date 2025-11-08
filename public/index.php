@@ -6,5 +6,6 @@ $controller = new BookController();
 
 switch ($action) {
     case "index": $controller->index();break;
+    case "create": $controller->create();break;
 }
 ?>
