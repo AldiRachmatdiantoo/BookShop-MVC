@@ -23,5 +23,22 @@ class Book {
             'genre' => $_POST['genre']
         ]);
     }
+    public function getBook($id){
+        $sql = "SELECT * FROM books WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(["id" => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function update($id){
+        $sql = "UPDATE books SET nama = :nama, penulis = :penulis, thalaman = :thalaman, genre = :genre WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            'nama' => $_POST['nama'],
+            'penulis' => $_POST['penulis'],
+            'thalaman' => $_POST['thalaman'],
+            'genre' => $_POST['genre'],
+            'id' => $id
+        ]);
+    }
 }
 ?>

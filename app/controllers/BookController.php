@@ -20,5 +20,14 @@ class BookController {
         header("Location: index.php");
         exit;
     }
+    public function edit($id){
+        $bookTarget = $this->model->getBook($id);
+        include_once __DIR__ . "/../views/update.php";
+    }
+    public function update($id){
+        $this->model->update($id);
+        header("Location: index.php");
+        exit;
+    }
 }
 ?>
