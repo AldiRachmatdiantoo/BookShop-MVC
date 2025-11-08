@@ -9,6 +9,7 @@ class BookController {
         $this->model = new Book(); 
     }
     public function index(){
+        $books = $this->model->all();
         include_once __DIR__ . "/../views/index.php";
     }
     public function create(){

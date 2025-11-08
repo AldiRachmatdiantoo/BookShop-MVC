@@ -8,6 +8,11 @@ class Book {
     {
         $this->pdo = (new Database())->getConnection();
     }
+    public function all(){
+        $sql = "SELECT * FROM books";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function create(){
         $sql = "INSERT INTO books (nama, penulis, thalaman, genre) VALUES (:nama, :penulis, :thalaman, :genre)";
         $stmt = $this->pdo->prepare($sql);
